@@ -5,15 +5,16 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-export const shortSummary = async (input: string) =>
+export const excuteCreateCompletion = async ({
+  prompt,
+  temperature,
+}: {
+  prompt: string;
+  temperature: number;
+}) =>
   await openai.createCompletion({
     model: "text-davinci-003",
-    temperature: 0.7,
-    max_tokens: 100,
-    prompt: `Summarize the text below but keep it concise. Summarize using plain and simple language and keep the same tense.
-
-"""
-${input}
-"""
-Concise Summary:`,
+    temperature: temperature,
+    max_tokens: 2048,
+    prompt: prompt,
   });
