@@ -1,28 +1,20 @@
-# Create T3 App
+# summer
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+GPT3 기반 Text Summarizer로 시작된 프롬프트 도우미, 프롬프트를 잘 못짜도 사전에 제작된 템플릿으로 쉽게 GPT3를 이용 할 수 있습니다.
 
-## What's next? How do I make an app with this?
+이런식으로 제품화가 진행되겠구나 싶어서 심심풀이로 만들었습니다.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+![](docs/screenshot.png)
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## 어떤 기능이 제공되고 있나요?
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
-
-## Learn More
-
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+* 이어 쓰기
+* 요점 나열
+* (EN) 문법수정
+* (짧게) 요약하기
+* (길게) 요약하기
+* 글 다시쓰기
+* 간단하게 표현하기
+* 제목 뽑기
+* 트윗 생성
+* 반론 생성
