@@ -26,7 +26,7 @@ const Home: NextPage = () => {
             summer
           </h1>
           <div className="flex w-full max-w-lg flex-col">
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}>
               <textarea
                 className="h-40 w-full rounded-lg p-4 text-lg text-gray-900"
                 placeholder="여기에 텍스트를 입력하세요."
