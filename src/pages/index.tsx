@@ -22,9 +22,17 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#f7f6f9] to-[#2934fe]">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-          <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-            summer
-          </h1>
+          <div className="flex flex-col items-center justify-center gap-2">
+            <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
+              summer
+            </h1>
+            <a
+              href="https://toss.me/llllll"
+              className="text-xl font-extrabold tracking-tight text-blue-400"
+            >
+              https://toss.me/llllll
+            </a>
+          </div>
           <div className="flex w-full max-w-lg flex-col">
             <form onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}>
               <textarea
