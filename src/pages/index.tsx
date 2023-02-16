@@ -26,12 +26,11 @@ const Home: NextPage = () => {
             <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
               summer
             </h1>
-            <a
-              href="https://toss.me/llllll"
-              className="text-xl font-extrabold tracking-tight text-blue-400"
-            >
-              https://toss.me/llllll
-            </a>
+            <div className="flex flex-row items-center justify-center gap-2 text-xl font-extrabold tracking-tight text-blue-500">
+              <a href="https://toss.me/llllll">toss (donate)</a>
+              <div className="h-4 w-1 bg-gray-400"></div>
+              <a href="https://github.com/9j/summer">github</a>
+            </div>
           </div>
           <div className="flex w-full max-w-lg flex-col">
             <form onSubmit={(...args) => void handleSubmit(onSubmit)(...args)}>
