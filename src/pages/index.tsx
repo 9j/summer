@@ -27,6 +27,11 @@ const Home: NextPage = () => {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3652700860611106"
           crossOrigin="anonymous"
         ></script>
+        <script
+          defer
+          data-domain="summerai.net"
+          src="https://plausible.io/js/script.js"
+        ></script>
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#60efff] to-[#0061ff]">
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
