@@ -18,9 +18,9 @@ const Home: NextPage = () => {
       <Head>
         <title>summer - AI 텍스트 생성기</title>
         <meta name="description" content="누구나 AI를 쉽고 재밌게" />
-        <meta name="og:title" content="summer - AI 텍스트 생성기" />
-        <meta name="og:description" content="누구나 AI를 쉽고 재밌게" />
-        <meta name="og:image" content="/logo.jpg" />
+        <meta property="og:title" content="summer - AI 텍스트 생성기" />
+        <meta property="og:description" content="누구나 AI를 쉽고 재밌게" />
+        <meta property="og:image" content="/logo.jpg" />
         <link rel="icon" href="/favicon.ico" />
         <script
           async
