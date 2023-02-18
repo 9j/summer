@@ -1,16 +1,51 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-
-import { api } from "../utils/api";
 
 const Home: NextPage = () => {
   const { register, handleSubmit } = useForm<{ text: string; id: string }>();
+  const [loading, setLoading] = useState(false);
+  const [generatedContent, setGeneratedContent] = useState("");
+  const [error, setError] = useState("");
 
-  const promptMutation = api.prompts.excute.useMutation();
+  const onSubmit = async ({ text, id }: { text: string; id: string }) => {
+    const response = await fetch("/api/prompts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text,
+        id,
+      }),
+    });
 
-  const onSubmit = ({ text, id }: { text: string; id: string }) => {
-    promptMutation.mutate({ text, id });
+    if (!response.ok) {
+      const errorText = await response.text();
+      setError(errorText);
+      return;
+    }
+    setError("");
+
+    const data = response.body;
+    if (!data) {
+      return;
+    }
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    let done = false;
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+
+      const chunkValue = decoder.decode(value);
+
+      setGeneratedContent((prev) => `${prev}${chunkValue}`);
+    }
+
+    setLoading(false);
   };
 
   return (
@@ -65,10 +100,9 @@ const Home: NextPage = () => {
                   required: true,
                   validate: (id) => id !== "none",
                 })}
+                defaultValue="none"
               >
-                <option selected value="none">
-                  무엇을 해볼까요? 선택해주세요.
-                </option>
+                <option value="none">무엇을 해볼까요? 선택해주세요.</option>
                 <option value="continuation">이어 쓰기</option>
                 <option value="takeaways">핵심 요약 하기</option>
                 <option value="fix-grammar">(EN) 문법 수정</option>
@@ -91,16 +125,10 @@ const Home: NextPage = () => {
               </button>
             </form>
           </div>
-          <p className="max-w-lg whitespace-pre-line text-lg text-white">
-            {promptMutation.isLoading
-              ? "Loading..."
-              : promptMutation.data?.text}
+          <p className="w-full max-w-lg whitespace-pre-line text-lg text-white">
+            {loading ? "Loading..." : generatedContent}
           </p>
-          {promptMutation.isError && (
-            <p className="max-w-lg text-lg text-red-500">
-              {promptMutation.error?.message}
-            </p>
-          )}
+          {error && <p className="max-w-lg text-lg text-red-500">{error}</p>}
         </div>
       </main>
     </>
