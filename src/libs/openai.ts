@@ -11,10 +11,12 @@ export const excuteCreateCompletion = async ({
 }: {
   prompt: string;
   temperature: number;
-}) =>
-  await openai.createCompletion({
+}) => {
+  // const tokenLength = encode(prompt).length;
+  return await openai.createCompletion({
     model: "text-davinci-003",
     temperature: temperature,
-    max_tokens: 2048,
+    max_tokens: 700,
     prompt: prompt,
   });
+};
