@@ -20,7 +20,7 @@ export const promptsRouter = createTRPCRouter({
       if (!prompt) {
         throw new TRPCError({
           code: "BAD_REQUEST",
-          message: "Invalid prompt id",
+          message: "올바르지 않은 프롬프트입니다.",
         });
       }
       const promptText = prompt.template({ input: input.text });
@@ -28,7 +28,7 @@ export const promptsRouter = createTRPCRouter({
       if (promptLength > MAXIMUM_PROMPT_LENGTH) {
         throw new TRPCError({
           code: "BAD_REQUEST",
-          message: "Prompt is too long",
+          message: "텍스트가 너무 길어요! 조금만 줄여주세요.",
         });
       }
       try {
@@ -41,18 +41,8 @@ export const promptsRouter = createTRPCRouter({
         };
       } catch (error) {
         throw new TRPCError({
-          code: "BAD_REQUEST",
-          message: (
-            error as {
-              response: {
-                data: {
-                  error: {
-                    message: string;
-                  };
-                };
-              };
-            }
-          ).response.data.error.message,
+          code: "INTERNAL_SERVER_ERROR",
+          message: "OPENAI 서버에 문제가 생겼어요. 잠시 후 다시 시도해주세요.",
         });
       }
     }),
