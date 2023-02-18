@@ -70,14 +70,17 @@ const Home: NextPage = () => {
                   무엇을 해볼까요? 선택해주세요.
                 </option>
                 <option value="continuation">이어 쓰기</option>
-                <option value="takeaways">요점 나열</option>
-                <option value="fix-grammar">(EN) 문법수정</option>
-                <option value="short-summary">(짧게) 요약하기</option>
-                <option value="long-summary">(길게) 요약하기</option>
-                <option value="rephrase">글 다시쓰기</option>
-                <option value="simplify">간단하게 표현하기</option>
+                <option value="takeaways">핵심 요약 하기</option>
+                <option value="fix-grammar">(EN) 문법 수정</option>
+                <option value="short-summary">짧게 요약하기</option>
+                <option value="long-summary">길게 요약하기</option>
+                <option value="rephrase">내 글 표현 바꾸기</option>
+                <option value="simplify">글 단순하게 바꾸기</option>
                 <option value="generate-titles">제목 뽑기</option>
+                <option value="generate-outline">아티클의 outline 생성</option>
+                <option value="generate-overview">글의 overview 생성</option>
                 <option value="generate-tweets">트윗 생성</option>
+                <option value="generate-email">이메일 생성</option>
                 <option value="generate-counter-argument">반론 생성</option>
               </select>
               <button
@@ -88,7 +91,7 @@ const Home: NextPage = () => {
               </button>
             </form>
           </div>
-          <p className="max-w-lg text-lg text-white">
+          <p className="max-w-lg whitespace-pre-line text-lg text-white">
             {promptMutation.isLoading
               ? "Loading..."
               : promptMutation.data?.text}

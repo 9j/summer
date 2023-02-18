@@ -202,23 +202,4 @@ Subject: ${input}
 
 Email:`,
   },
-  {
-    id: "action-items",
-    temperature: 0.5,
-    template: ({ input }) =>
-      `My notes is below in triple quotes:
-"""
-${input}
-"""
-
-Write a todo list of action items from my notes using the following format:
-"""
-- [ ] <first action item>
-- [ ] <second action item>
-- [ ] <third action item>
-- [ ] <fourth action item>
-"""
-
-List of action items from my notes in the format above:`,
-  },
 ];
