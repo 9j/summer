@@ -1,26 +1,39 @@
 import { TRPCError } from "@trpc/server";
+import { encode } from "gpt-3-encoder";
 import { z } from "zod";
 import { excuteCreateCompletion } from "../../../libs/openai";
 import { SERVER_PREDICTION_PROMPTS } from "../../../libs/prompts";
 
 import { createTRPCRouter, publicProcedure } from "../trpc";
 
+const MAXIMUM_TOKEN_LENGTH = 4097;
+export const MAX_TOKENS = 700;
+const MAXIMUM_PROMPT_LENGTH = MAXIMUM_TOKEN_LENGTH - MAX_TOKENS;
+
 export const promptsRouter = createTRPCRouter({
   excute: publicProcedure
     .input(z.object({ text: z.string(), id: z.string() }))
     .mutation(async ({ input }) => {
+      const prompt = SERVER_PREDICTION_PROMPTS.find(
+        (prompt) => prompt.id === input.id
+      );
+      if (!prompt) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Invalid prompt id",
+        });
+      }
+      const promptText = prompt.template({ input: input.text });
+      const promptLength = encode(promptText).length;
+      if (promptLength > MAXIMUM_PROMPT_LENGTH) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "Prompt is too long",
+        });
+      }
       try {
-        const prompt = SERVER_PREDICTION_PROMPTS.find(
-          (prompt) => prompt.id === input.id
-        );
-        if (!prompt) {
-          throw new TRPCError({
-            code: "BAD_REQUEST",
-            message: "Invalid prompt id",
-          });
-        }
         const result = await excuteCreateCompletion({
-          prompt: prompt.template({ input: input.text }),
+          prompt: promptText,
           temperature: prompt.temperature,
         });
         return {

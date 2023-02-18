@@ -2010,6 +2010,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gpt-3-encoder@npm:^1.1.4":
+  version: 1.1.4
+  resolution: "gpt-3-encoder@npm:1.1.4"
+  checksum: bfcbffa74272bd544015305ae42f4b2d2e138ffbed157d068cc4de5c5cb4e0c964d0ff6512218809a04d10484325eb5b5d2975edf36170b1f443cb43887356e8
+  languageName: node
+  linkType: hard
+
 "graceful-fs@npm:^4.2.4, graceful-fs@npm:^4.2.6":
   version: 4.2.10
   resolution: "graceful-fs@npm:4.2.10"
@@ -3859,6 +3866,7 @@ __metadata:
     autoprefixer: ^10.4.7
     eslint: ^8.30.0
     eslint-config-next: 13.1.6
+    gpt-3-encoder: ^1.1.4
     next: 13.1.6
     openai: ^3.1.0
     postcss: ^8.4.14
