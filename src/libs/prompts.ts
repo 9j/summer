@@ -1,5 +1,3 @@
-// This Codes are from https://gist.github.com/maccman/e0576c40f321b81e996ca91a8152d2f4
-// Thanks to @maccman
 type TemplateContext = {
   input: string;
   customPrompt?: string;
