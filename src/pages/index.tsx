@@ -26,6 +26,7 @@ const Home: NextPage = () => {
       setError(errorText);
       return;
     }
+    setGeneratedContent("");
     setError("");
 
     const data = response.body;
