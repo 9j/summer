@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import { PROMPTS_LIST } from "../constants/prompts";
-import { Button } from "../shared/ui";
+import { BackButton, Button } from "../shared/ui";
 
 type Props = {
   nextStep: () => void;
@@ -8,24 +8,23 @@ type Props = {
 };
 
 const SelectPromptFunnel = ({ nextStep, prevStep }: Props) => {
-  const { register } = useFormContext();
+  const { setValue } = useFormContext();
 
   const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const promptId = e.currentTarget.dataset.promptId;
-    console.log(
-      "🚀 ~ file: select-prompt-funnel.tsx:15 ~ handleButtonClick ~ promptId",
-      e.currentTarget.dataset
-    );
     if (!promptId) {
       return;
     }
-    register("id", { value: promptId });
+    setValue("id", promptId);
     nextStep();
   };
 
   return (
     <div className="h-screen w-full">
       <div className="sticky top-0 flex h-24 w-full items-center justify-center bg-gradient-to-t from-white to-[#90dc4c]">
+        <div className="absolute top-0 left-0 flex h-24 items-center justify-center">
+          <BackButton onClick={prevStep} />
+        </div>
         <h1 className="w-full text-center text-2xl font-bold">
           무엇을 해볼까요?
         </h1>

@@ -22,7 +22,8 @@ const Home: NextPage = () => {
   const [error, setError] = useState("");
 
   const onSubmit = async ({ text, id }: { text: string; id: string }) => {
-    setStep("결과");
+    setError("");
+    setStep("완료");
     const response = await fetch("/api/prompts", {
       method: "POST",
       headers: {
@@ -62,6 +63,13 @@ const Home: NextPage = () => {
     setLoading(false);
   };
 
+  const onReset = () => {
+    setStep("시작");
+    setGeneratedContent("");
+    setError("");
+    methods.reset();
+  };
+
   return (
     <>
       <Head>
@@ -92,12 +100,16 @@ const Home: NextPage = () => {
             {step === "프롬프트선택" ? (
               <SelectPromptFunnel nextStep={nextStep} prevStep={prevStep} />
             ) : null}
-            {step === "텍스트입력" ? <EnterTextFunnel /> : null}
-            {step === "결과" ? (
+            {step === "텍스트입력" ? (
+              <EnterTextFunnel prevStep={prevStep} />
+            ) : null}
+            {step === "완료" ? (
               <ResultFunnel
                 loading={loading}
                 generatedContent={generatedContent}
                 error={error}
+                onReset={onReset}
+                prevStep={prevStep}
               />
             ) : null}
           </form>

@@ -1,9 +1,15 @@
+import { useRouter } from "next/router";
 import { Button } from "../shared/ui";
 
 type Props = {
   nextStep: () => void;
 };
 const StartFunnel = ({ nextStep }: Props) => {
+  const router = useRouter();
+  const handleOldVersion = () => {
+    void router.push("/old");
+  };
+
   return (
     <>
       <div className="flex flex-col items-center justify-center gap-2">
@@ -18,7 +24,18 @@ const StartFunnel = ({ nextStep }: Props) => {
           <div className="h-4 w-1 bg-gray-500"></div>
           <a href="https://github.com/9j/summer">github</a>
         </div>
-        <Button onClick={() => nextStep()}>시작하기</Button>
+        <div className="mt-2 flex gap-2">
+          <Button onClick={nextStep} type="button">
+            시작하기
+          </Button>
+          <Button
+            onClick={handleOldVersion}
+            className="to-gray-300"
+            type="button"
+          >
+            이전 버전
+          </Button>
+        </div>
       </div>
       <div className="fixed top-0 -z-10 h-96 w-full bg-gradient-to-t from-white to-blue-300"></div>
       <div className="fixed bottom-0 -z-10 h-16 w-full bg-gradient-to-b from-white to-blue-300"></div>

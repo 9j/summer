@@ -8,9 +8,17 @@ type Props = {
   generatedContent?: string;
   loading: boolean;
   error?: string;
+  onReset: () => void;
+  prevStep: () => void;
 };
 
-const ResultFunnel = ({ generatedContent, loading, error }: Props) => {
+const ResultFunnel = ({
+  generatedContent,
+  loading,
+  error,
+  prevStep,
+  onReset,
+}: Props) => {
   const { getValues } = useFormContext<{
     id: string;
     text: string;
@@ -38,6 +46,7 @@ const ResultFunnel = ({ generatedContent, loading, error }: Props) => {
           height={40}
           src="/avatar.jpg"
           alt="avatar"
+          onClick={onReset}
         />
         <span className="text-center text-2xl font-bold">summer AI</span>
       </div>
@@ -68,12 +77,14 @@ const ResultFunnel = ({ generatedContent, loading, error }: Props) => {
               <h1 className="text-2xl font-bold">에러가 발생했습니다.</h1>
               <p className="text-lg">{error}</p>
 
-              <Button onClick={() => window.location.reload()}>
-                다시 시도하기
-              </Button>
+              <Button onClick={() => prevStep()}>다시 시도하기</Button>
             </div>
           </div>
         ) : null}
+        {/* onReset */}
+        <div className="fixed bottom-6 flex w-full flex-col items-center justify-center">
+          <Button onClick={() => onReset()}>처음부터 다시하기</Button>
+        </div>
       </div>
       <div className="fixed bottom-0 -z-10 h-16 w-full bg-gradient-to-b from-white to-yellow-200"></div>
     </div>
