@@ -20,7 +20,7 @@ const SelectPromptFunnel = ({ nextStep, prevStep }: Props) => {
   };
 
   return (
-    <div className="h-screen w-full">
+    <div className="h-full w-full">
       <div className="sticky top-0 flex h-24 w-full items-center justify-center bg-gradient-to-t from-white to-[#90dc4c]">
         <div className="absolute top-0 left-0 flex h-24 items-center justify-center">
           <BackButton onClick={prevStep} />

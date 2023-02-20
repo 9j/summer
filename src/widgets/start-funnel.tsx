@@ -13,7 +13,7 @@ const StartFunnel = ({ nextStep }: Props) => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center gap-2">
+      <div className="min-safe-h-screen flex flex-col items-center justify-center gap-2">
         <h1 className="bg-gradient-to-tr from-[#6096FD] to-[#FAA7B8] bg-clip-text text-5xl font-extrabold tracking-tight text-transparent sm:text-[5rem]">
           summer
         </h1>

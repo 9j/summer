@@ -90,7 +90,7 @@ const Home: NextPage = () => {
           src="https://plausible.io/js/script.js"
         ></script>
       </Head>
-      <main className="flex min-h-screen flex-col items-center justify-center">
+      <main className="flex h-full flex-col items-center justify-center">
         <FormProvider {...methods}>
           <form
             onSubmit={(...args) => void methods.handleSubmit(onSubmit)(...args)}

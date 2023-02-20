@@ -38,7 +38,7 @@ const ResultFunnel = ({
   }, [generatedContent]);
 
   return (
-    <div className="h-screen w-full">
+    <div className="h-full w-full">
       <div className="sticky top-0 flex h-24 w-full items-center gap-4 bg-gradient-to-t from-white to-yellow-200 pl-6">
         <Image
           className="h-10 w-10 rounded-full"

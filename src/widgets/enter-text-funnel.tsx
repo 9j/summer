@@ -12,7 +12,7 @@ const EnterTextFunnel = ({ prevStep }: Props) => {
   const promptName = PROMPTS_LIST.find((p) => p.id === promptId)?.name;
 
   return (
-    <div className="h-screen w-full">
+    <div className="h-full w-full">
       <div className="sticky top-0 flex h-24 w-full items-center justify-center bg-gradient-to-t from-white to-purple-300">
         <div className="absolute top-0 left-0 flex h-24 items-center justify-center">
           <BackButton onClick={prevStep} />
