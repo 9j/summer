@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { Button } from "../shared/ui";
 
@@ -19,6 +20,7 @@ const StartFunnel = ({ nextStep }: Props) => {
         <h2 className="text-2xl font-extrabold tracking-tight sm:text-[2rem]">
           누구나 AI를 쉽고 재밌게
         </h2>
+        <Image src="/logo.jpg" width={200} height={200} alt="logo" />
         <div className="flex flex-row items-center justify-center gap-2 text-xl font-extrabold tracking-tight text-blue-700">
           <a href="https://toss.me/llllll">toss (donate)</a>
           <div className="h-4 w-1 bg-gray-500"></div>

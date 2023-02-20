@@ -58,17 +58,20 @@ const ResultFunnel = ({
           </Message>
         </div>
         {!error && !loading ? (
-          <div className="mt-4 flex gap-2 px-2">
-            <div className="flex-shrink-0">
-              <Image
-                className="h-8 w-8 rounded-full"
-                width={40}
-                height={40}
-                src="/avatar.jpg"
-                alt="avatar"
-              />
+          <div className="mt-4 flex flex-col gap-1">
+            <div className="pl-12">summer 🤖</div>
+            <div className="flex gap-2 px-2">
+              <div className="flex-shrink-0">
+                <Image
+                  className="h-8 w-8 rounded-full"
+                  width={40}
+                  height={40}
+                  src="/avatar.jpg"
+                  alt="avatar"
+                />
+              </div>
+              <Message>{generatedContent}</Message>
             </div>
-            <Message>{generatedContent}</Message>
           </div>
         ) : null}
         {error ? (
