@@ -6,7 +6,7 @@ import { Button, Message } from "../shared/ui";
 
 type Props = {
   generatedContent?: string;
-  loading: boolean;
+  isReceiving: boolean;
   error?: string;
   onReset: () => void;
   prevStep: () => void;
@@ -14,7 +14,7 @@ type Props = {
 
 const ResultFunnel = ({
   generatedContent,
-  loading,
+  isReceiving,
   error,
   prevStep,
   onReset,
@@ -37,6 +37,10 @@ const ResultFunnel = ({
     scrollToBottom();
   }, [generatedContent]);
 
+  const copyToClipboard = () => {
+    void navigator.clipboard.writeText(generatedContent ?? "");
+  };
+
   return (
     <div className="h-full w-full">
       <div className="sticky top-0 flex h-24 w-full items-center gap-4 bg-gradient-to-t from-white to-yellow-200 pl-6">
@@ -57,7 +61,7 @@ const ResultFunnel = ({
             {promptChat}
           </Message>
         </div>
-        {!error && !loading ? (
+        {!error ? (
           <div className="mt-4 flex flex-col gap-1">
             <div className="pl-12">summer 🤖</div>
             <div className="flex gap-2 px-2">
@@ -70,7 +74,11 @@ const ResultFunnel = ({
                   alt="avatar"
                 />
               </div>
-              <Message>{generatedContent}</Message>
+              {generatedContent?.length ? (
+                <Message>{generatedContent}</Message>
+              ) : (
+                <span className="p-1 text-gray-400">입력 중...</span>
+              )}
             </div>
           </div>
         ) : null}
@@ -84,10 +92,21 @@ const ResultFunnel = ({
             </div>
           </div>
         ) : null}
-        {/* onReset */}
-        <div className="fixed bottom-6 flex w-full flex-col items-center justify-center">
-          <Button onClick={() => onReset()}>처음부터 다시하기</Button>
-        </div>
+        {!isReceiving ? (
+          <div className="fixed bottom-6 flex w-full items-center justify-center gap-4">
+            <Button onClick={onReset} type="button">
+              처음부터 다시하기
+            </Button>
+
+            <Button
+              onClick={copyToClipboard}
+              className="to-gray-300"
+              type="button"
+            >
+              답변 복사하기
+            </Button>
+          </div>
+        ) : null}
       </div>
       <div className="fixed bottom-0 -z-10 h-16 w-full bg-gradient-to-b from-white to-yellow-200"></div>
     </div>

@@ -17,12 +17,14 @@ const Home: NextPage = () => {
   ]);
 
   const methods = useForm<{ text: string; id: string }>();
-  const [loading, setLoading] = useState(false);
+  const [isReceiving, setIsReceiving] = useState(false);
   const [generatedContent, setGeneratedContent] = useState("");
   const [error, setError] = useState("");
 
   const onSubmit = async ({ text, id }: { text: string; id: string }) => {
     setError("");
+    setGeneratedContent("");
+    setIsReceiving(true);
     setStep("완료");
     const response = await fetch("/api/prompts", {
       method: "POST",
@@ -40,8 +42,6 @@ const Home: NextPage = () => {
       setError(errorText);
       return;
     }
-    setGeneratedContent("");
-    setError("");
 
     const data = response.body;
     if (!data) {
@@ -53,14 +53,15 @@ const Home: NextPage = () => {
 
     while (!done) {
       const { value, done: doneReading } = await reader.read();
+      if (doneReading) {
+        setIsReceiving(false);
+      }
       done = doneReading;
 
       const chunkValue = decoder.decode(value);
 
       setGeneratedContent((prev) => `${prev}${chunkValue}`);
     }
-
-    setLoading(false);
   };
 
   const onReset = () => {
@@ -105,7 +106,7 @@ const Home: NextPage = () => {
             ) : null}
             {step === "완료" ? (
               <ResultFunnel
-                loading={loading}
+                isReceiving={isReceiving}
                 generatedContent={generatedContent}
                 error={error}
                 onReset={onReset}
