@@ -1,9 +1,9 @@
-import { PROMPTS_LIST } from "core/constants/prompts";
-import { Message } from "features/message/ui";
+import { PROMPTS_LIST } from "@core/constants/prompts";
+import { Message } from "@features/message/ui";
 import Image from "next/image";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-import { Button } from "shared/ui";
+import { Button } from "@shared/ui";
 
 type Props = {
   generatedContent?: string;

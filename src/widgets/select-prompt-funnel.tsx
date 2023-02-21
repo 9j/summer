@@ -1,6 +1,6 @@
-import { PromptList } from "features/prompt/ui";
+import { PromptList } from "@features/prompt/ui";
 import { useFormContext } from "react-hook-form";
-import { BackButton } from "shared/ui";
+import { BackButton } from "@shared/ui";
 
 type Props = {
   nextStep: () => void;

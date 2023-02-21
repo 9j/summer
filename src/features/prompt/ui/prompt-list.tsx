@@ -1,5 +1,5 @@
-import { PROMPTS_LIST } from "core/constants/prompts";
-import { Button } from "shared/ui";
+import { PROMPTS_LIST } from "@core/constants/prompts";
+import { Button } from "@shared/ui";
 
 type Props = {
   onPromptClick: (e: React.MouseEvent<HTMLButtonElement>) => void;

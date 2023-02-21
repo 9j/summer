@@ -1,4 +1,4 @@
-import { ChatBubble } from "entities/message/ui";
+import { ChatBubble } from "@entities/message/ui";
 import Image from "next/image";
 
 type Props = {
