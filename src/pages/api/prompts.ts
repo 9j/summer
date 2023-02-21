@@ -1,9 +1,9 @@
 import GPT3Tokenizer from "gpt3-tokenizer";
 import type { NextRequest } from "next/server";
 import { Configuration, OpenAIApi } from "openai-edge";
-import { env } from "../../env.mjs";
-import { OpenAIStream } from "../../libs/openai";
-import { SERVER_PREDICTION_PROMPTS } from "../../libs/prompts";
+import { env } from "core/env.mjs";
+import { OpenAIStream } from "server/libs/openai";
+import { SERVER_PREDICTION_PROMPTS } from "server/libs/prompts";
 
 const MAXIMUM_TOKEN_LENGTH = 4097;
 export const MAX_TOKENS = 700;

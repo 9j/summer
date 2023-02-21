@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { Button } from "../shared/ui";
+import { Button } from "shared/ui";
 
 type Props = {
   nextStep: () => void;

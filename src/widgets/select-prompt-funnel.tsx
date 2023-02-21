@@ -1,6 +1,6 @@
+import { PromptList } from "features/prompt/ui";
 import { useFormContext } from "react-hook-form";
-import { PROMPTS_LIST } from "../constants/prompts";
-import { BackButton, Button } from "../shared/ui";
+import { BackButton } from "shared/ui";
 
 type Props = {
   nextStep: () => void;
@@ -29,19 +29,7 @@ const SelectPromptFunnel = ({ nextStep, prevStep }: Props) => {
           무엇을 해볼까요?
         </h1>
       </div>
-      <div className="flex w-full flex-col gap-4 px-4 pb-6">
-        {PROMPTS_LIST.map((prompt) => (
-          <Button
-            key={prompt.id}
-            className="mx-auto h-14 w-full max-w-md gap-2 bg-gradient-to-b from-white to-blue-300 px-5 text-left font-normal"
-            data-prompt-id={prompt.id}
-            onClick={handleButtonClick}
-            type="button"
-          >
-            {prompt.name}
-          </Button>
-        ))}
-      </div>
+      <PromptList onPromptClick={handleButtonClick} />
       <div className="fixed bottom-0 -z-10 h-16 w-full bg-gradient-to-b from-white to-[#90dc4c]"></div>
     </div>
   );

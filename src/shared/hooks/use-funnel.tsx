@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { assertString } from "../utils/assert";
+import { assertString } from "shared/utils/assert";
 
 const useFunnel = (
   steps: Array<string>

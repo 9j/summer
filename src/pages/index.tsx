@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { useFunnel } from "../hooks";
+import { useFunnel } from "../shared/hooks";
 import EnterTextFunnel from "../widgets/enter-text-funnel";
 import ResultFunnel from "../widgets/result-funnel";
 import SelectPromptFunnel from "../widgets/select-prompt-funnel";

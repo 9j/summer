@@ -1,8 +1,9 @@
+import { PROMPTS_LIST } from "core/constants/prompts";
+import { Message } from "features/message/ui";
 import Image from "next/image";
 import { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
-import { PROMPTS_LIST } from "../constants/prompts";
-import { Button, Message } from "../shared/ui";
+import { Button } from "shared/ui";
 
 type Props = {
   generatedContent?: string;
@@ -55,33 +56,10 @@ const ResultFunnel = ({
         <span className="text-center text-2xl font-bold">summer AI</span>
       </div>
       <div className="pb-16">
-        <div className="mt-4 flex justify-end gap-2 px-2">
-          <Message fromMe>
-            {text}
-            {promptChat}
-          </Message>
-        </div>
-        {!error ? (
-          <div className="mt-4 flex flex-col gap-1">
-            <div className="pl-12">summer 🤖</div>
-            <div className="flex gap-2 px-2">
-              <div className="flex-shrink-0">
-                <Image
-                  className="h-8 w-8 rounded-full"
-                  width={40}
-                  height={40}
-                  src="/avatar.jpg"
-                  alt="avatar"
-                />
-              </div>
-              {generatedContent?.length ? (
-                <Message>{generatedContent}</Message>
-              ) : (
-                <span className="p-1 text-gray-400">입력 중...</span>
-              )}
-            </div>
-          </div>
-        ) : null}
+        <Message fromMe>
+          {text}
+          {promptChat}
+        </Message>
         {error ? (
           <div className="fixed bottom-16 flex w-full flex-col items-center justify-center">
             <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-black bg-gradient-to-t from-red-500 to-white p-4">
@@ -91,7 +69,9 @@ const ResultFunnel = ({
               <Button onClick={() => prevStep()}>다시 시도하기</Button>
             </div>
           </div>
-        ) : null}
+        ) : (
+          <Message name="summer 🤖">{generatedContent}</Message>
+        )}
         {!isReceiving ? (
           <div className="fixed bottom-6 flex w-full items-center justify-center gap-4">
             <Button onClick={onReset} type="button">
